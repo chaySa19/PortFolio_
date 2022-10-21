@@ -7990,6 +7990,10 @@ section {
     padding-top: 3.125rem;
     padding-bottom: 3.125rem
 }
+::-webkit-scrollbar {
+    width: 0px;
+    background: transparent; /* make scrollbar transparent */
+}
 
 @media (min-width: 576px) {
     section {
@@ -8003,6 +8007,9 @@ section {
 }
 
 @media (min-width: 576px) {
+    .about {
+        
+    }
     .about p {
         font-size: 1.25rem
     }
