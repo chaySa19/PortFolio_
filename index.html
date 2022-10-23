@@ -23,11 +23,27 @@
    (function(){
       emailjs.init("Kgp4tlIXpD7roWCke");
    })();
+   
 </script>
+<style>
+  #loader{
+  position: fixed;
+  left: 0px;
+  top: 0px;
+  width: 100%;
+  height: 100%;
+  z-index: 9999;
+  background: url('img/Spinner-1s-200px\ \(1\).gif') 
+              50% 50% no-repeat rgba(0, 0, 0, 0.5);
+}
+</style>
+  
+
     </head>
 
     <body>
 
+      
         <header class="header" id="header">
             <!-- Top fixed navbar -->
             <nav class="navbar navbar-top navbar-expand-md navbar-dark header__navbar">
@@ -471,10 +487,12 @@
 
        
         <section class="counter" id="contact">
+            <div id="loader"></div>
             <div class="container">
                 <div class="row justify-content-center">
                     <div class="col-md-10 col-lg-8">
                         <h2 class="heading-secondary ">Contact me</h2>
+                        
                             <div class="form-group">
                                 <label for="Username">Nom</label>
                                 <input required type="text" class="form-control" id="fullName">
@@ -490,16 +508,17 @@
                             </div>
 
 
-                            <button  class="mt-2 btn btn--full float-right" onclick="SendMail()">Send <svg
+                            <button  class="mt-2 btn btn--full float-right" style="background-color: #32afb2;" onclick="SendMail()" type="button">Send <svg
                                     class="icon btn__icon-right">
                                     <use xlink:href="./img/SVG/symbol-defs.svg#icon-paper-plane"></use>
                                 </svg></button>
+                                
+                        
                     </div>
                 </div>
             </div>
         </section>
 
-      
 
 
         <script src="./js/vendors/jquery/jquery.min.js"></script>
@@ -508,16 +527,40 @@
         <script src="./js/vendors/bootstrap/bootstrap.min.js"></script>
         <script src="./js/script.js"></script>
         <script>
+             $("#loader").hide();
             function SendMail(){
-  var params={ 
-     from_name: document.getElementById('fullName').value,
-    email_id:document.getElementById('email_id').value,
-    message:document.getElementById('message').value}
-    emailjs.send("service_ua6irdk","template_vrtww2u",params).then(function(res){
-        alert("Success! "+res.satuts)
+                console.log("hhhhhhhhhhhhhhhhhhhhhhhh");
+                if((document.getElementById('fullName').value && document.getElementById('email_id').value
+                 && document.getElementById('message').value)){
+                    var params={ 
+        
+        from_name: document.getElementById('fullName').value,
+        email_id:document.getElementById('email_id').value,
+        message:document.getElementById('message').value}
+        $("#loader").show();
+        emailjs.send("service_ua6irdk","template_vrtww2u",params).then(function(res){
+            $("#loader").hide();
+
+            document.getElementById('fullName').value="";
+            document.getElementById('email_id').value="";
+            document.getElementById('message').value="";
+
+            alert("votre message a été envoyé avec succès Merci pour votre intérêt!")
+
+           
     })
-}
+                 }else{
+                    alert("enter all the field")
+
+                 }
+                  
+               
+        
+        }
+       
+   
         </script>
+        
     </body>
 
 </html>
