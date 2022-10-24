@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+       
+        <link rel="apple-touch-icon" sizes="180x180" href="./img/favicon/apple-touch-icon.png">
+        <link rel="icon" type="image/png" sizes="32x32" href="./img/favicon/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="./img/favicon/favicon-16x16.png">
+        <link rel="manifest" href="./img/favicon/site.webmanifest">
+        <link rel="stylesheet" href="./css/main.css">
+        <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+        <title>Portfolio Chaymae Saad</title>
+        <style>
+            #loader{
+            position: fixed;
+            left: 0px;
+            top: 0px;
+            width: 100%;
+            height: 100%;
+            z-index: 9999;
+            background: url('img/Spinner-1s-200px\ \(1\).gif') 
+                        50% 50% no-repeat rgba(0, 0, 0, 0.5);
+          }
+          </style>
+            
+          
+    </head>
+
+    <body>
+
+        <header class="header" id="header" style="max-height: 100px;">
+            <!-- Top fixed navbar -->
+            <nav class="navbar navbar-top navbar-expand-md navbar-dark header__navbar">
+                <div class="container-lg">
+                    <a class="navbar-brand" href="index.html">Chaymae Saad</a>
+                    <button class="navbar-toggler" type="button" data-toggle="collapse"
+                        data-target="#navbarTopCollapsible" aria-controls="navbarTopCollapsible" aria-expanded="false"
+                        aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarTopCollapsible">
+                        <ul class="navbar-nav ml-auto">
+                            <li class="nav-item active">
+                                <a class="nav-link" href="index.html">Accueil <span class="sr-only">(current)</span></a>
+                            </li>
+                           
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+
+
+           
+
+           
+        </header>
+
+
+        <section >
+            <div class="container" >
+                <h2 class="heading-secondary">Descriptif de l'application</h2>
+    
+                <p class="project__details" style=" font-size: 20px;"> cette application permet de partager Des publications, 
+                    l’utilisation des Chats entre les utilisateurs, faciliter l’interaction entre les utilisateurs, la création d’une galerie de photos. Les utilisateurs peuvent partager leurs quotidiens à travers un mur en déposant leurs photos et recevoir des commentaires de leurs amis.
+                     </p>
+                <br>
+                    <div class="technologies" >
+                    <p style="font-family: Poppins Regular; font-weight:bold; font-size: 18px;">Technologies utilisées:</p>
+                    <span style="color:grey; font-size: 16px;"> NodeJs, ReactJS, ExpressJS,MongoDB, Sockets</span>.</p>
+                    
+                                          
+                </div>
+                
+              </div>
+           </section>
+
+
+       <section  class="work">
+        <div class="container" >
+
+        <h2 class="heading-secondary">Démonstration de l'application</h2>
+
+        <video width="100%" style=" 
+        " height="100%" controls>
+            <source src="./videos/chatapp.mp4" type="video/mp4">
+          
+          Your browser does not support the video tag.
+          </video>
+          </div>
+       </section>
+       <section class="counter" id="contact">
+        <div id="loader"></div>
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-md-10 col-lg-8">
+                    <h2 class="heading-secondary ">Contactez moi</h2>
+                    
+                        <div class="form-group">
+                            <label for="Username">Nom</label>
+                            <input required type="text" class="form-control" id="fullName">
+                        </div>
+                        <div class="form-group">
+                            <label for="Email">Email</label>
+                            <input required type="email" class="form-control" id="email_id">
+                        </div>
+   
+                        <div class="form-group">
+                            <label for="message">Votre message</label>
+                            <textarea required type="text" class="form-control" id="message" rows="4"></textarea>
+                        </div>
+
+
+                        <button  class="mt-2 btn btn--full float-right" style="background-color: #32afb2;" onclick="SendMail()" type="button">Send <svg
+                                class="icon btn__icon-right">
+                                <use xlink:href="./img/SVG/symbol-defs.svg#icon-paper-plane"></use>
+                            </svg></button>
+                            
+                    
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+    <script src="./js/vendors/jquery/jquery.min.js"></script>
+    <script src="./js/vendors/waypoints/jquery.waypoints.min.js"></script>
+    <script src="./js/vendors/popper/popper.min.js"></script>
+    <script src="./js/vendors/bootstrap/bootstrap.min.js"></script>
+    <script src="./js/script.js"></script>
+    <script type="text/javascript"
+    src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js">
+</script>
+<script type="text/javascript">
+(function(){
+  emailjs.init("Kgp4tlIXpD7roWCke");
+})();
+
+</script>
+    <script>
+         $("#loader").hide();
+        function SendMail(){
+            console.log("hhhhhhhhhhhhhhhhhhhhhhhh");
+            if((document.getElementById('fullName').value && document.getElementById('email_id').value
+             && document.getElementById('message').value)){
+                var params={ 
+    
+    from_name: document.getElementById('fullName').value,
+    email_id:document.getElementById('email_id').value,
+    message:document.getElementById('message').value}
+    $("#loader").show();
+    emailjs.send("service_ua6irdk","template_vrtww2u",params).then(function(res){
+        $("#loader").hide();
+
+        document.getElementById('fullName').value="";
+        document.getElementById('email_id').value="";
+        document.getElementById('message').value="";
+
+        alert("votre message a été envoyé avec succès Merci pour votre intérêt!")
+
+       
+})
+             }else{
+                alert("enter all the field")
+
+             }
+              
+           
+    
+    }
+   
+
+    </script>
+    
+</body>
+
+</html>
